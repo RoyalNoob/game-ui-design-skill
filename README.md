@@ -73,6 +73,8 @@ Tips:
 - **Inspector.** In a mockup, press the backquote key or click **Inspect**. Select elements, check the **Selector**, write a change, click **Copy edits**, and paste the result into the chat.
 - **Panel position.** If the panel covers an element, click **Move panel**.
 
+See the [inspector walkthrough](docs/inspector.md) for a step-by-step guide with screenshots.
+
 ## Repository layout
 
 ```
@@ -90,6 +92,7 @@ tests/browser/                         Playwright tests for the inspector
 tools/build_zip.sh                     builds dist/game-gui-design-v<version>.zip
 tools/changelog_section.py             release notes from CHANGELOG.md
 .github/workflows/                     CI and release
+docs/inspector.md                      inspector walkthrough (user manual)
 docs/                                  design notes and session history
 ```
 

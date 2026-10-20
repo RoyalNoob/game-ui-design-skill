@@ -1,6 +1,6 @@
 {
   "name": "game-gui",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Game UI design process: brief, references, information architecture, design system, mockups with an inspector, validation, navigation cost, and handoff spec.",
   "author": {
     "name": "RoyalNoob"

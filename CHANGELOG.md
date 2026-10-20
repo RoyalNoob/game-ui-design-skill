@@ -2,6 +2,12 @@
 
 All versions are beta (0.x). Format: one section per version, newest first.
 
+## 0.3.2 — 2026-10-20
+
+- Inspector: the panel keeps its layout when the mockup's CSS defines common class or element names (`.row`, `.flex`, `.muted`, `button`, `input`, and others). Before this fix, the edit controls could be pushed off the edge of the panel.
+- New browser test with hostile page CSS.
+- New [inspector walkthrough](docs/inspector.md) with annotated screenshots. The README links to it.
+
 ## 0.3.1 — 2026-10-20
 
 - Reference research uses references that the user collects: attached screenshots, page URLs, or short notes.

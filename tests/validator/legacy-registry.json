@@ -1,0 +1,26 @@
+{
+  "tokens": {
+    "$color.surface": "#1b1712",
+    "$color.accent.primary": "#d98e2b",
+    "$color.text.high": "#f2ead9",
+    "$type.size.body": "30px"
+  },
+  "components": {
+    "@bar": {"parts": ["track", "fill"], "variants": [], "states": ["normal", "low"]},
+    "@button": {"parts": ["label"], "variants": ["primary"], "states": ["normal", "focus", "disabled"]}
+  },
+  "screens": {
+    "hud": {
+      "hud": {"component": "", "tags": []},
+      "hud.bottom-left.health-bar": {"component": "@bar", "tags": ["#p1", "#readout"]},
+      "hud.bottom-left.ammo": {"component": "", "tags": ["#p1", "#readout"]},
+      "hud.top-right.old-minimap": {"component": "", "tags": [], "status": "removed"}
+    },
+    "inventory": {
+      "inventory.grid.slot[*]": {"component": "@button", "tags": ["#interactive"]}
+    }
+  },
+  "rename_map": {},
+  "overrides": {},
+  "changelog": []
+}

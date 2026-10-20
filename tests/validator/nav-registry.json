@@ -1,0 +1,259 @@
+{
+ "brief": {
+  "platforms": [
+   "console",
+   "pc"
+  ],
+  "reference_height": 1080
+ },
+ "tokens": {
+  "$color.surface": "#1b1712",
+  "$color.accent.primary": "#d98e2b",
+  "$color.text.high": "#f2ead9",
+  "$type.size.body": "28px",
+  "$type.size.hud-number": "44px",
+  "$type.size.caption": "22px",
+  "$motion.duration.normal": "180ms",
+  "$motion.ease.out": "cubic-bezier(0.2, 0, 0, 1)"
+ },
+ "type_exceptions": {
+  "$type.size.caption": "PC-only legal footer, not shown on console"
+ },
+ "components": {
+  "@bar": {
+   "parts": [
+    "track",
+    "fill"
+   ],
+   "variants": [
+    "low"
+   ],
+   "states": [
+    "normal"
+   ]
+  },
+  "@prompt": {
+   "parts": [
+    "glyph",
+    "label"
+   ],
+   "variants": [
+    "xbox",
+    "ps",
+    "switch",
+    "kbm"
+   ],
+   "states": [
+    "normal"
+   ]
+  }
+ },
+ "input_map": {
+  "actions": {
+   "confirm": {
+    "xbox": "A",
+    "ps": "Cross",
+    "switch": "A",
+    "kbm": "Enter"
+   },
+   "interact": {
+    "xbox": "X",
+    "ps": "Square",
+    "switch": "Y",
+    "kbm": "E"
+   },
+   "pause": {
+    "xbox": "Menu",
+    "ps": "Options",
+    "switch": "+",
+    "kbm": "Esc"
+   },
+   "map": {
+    "xbox": "View",
+    "ps": "Touchpad",
+    "switch": "-",
+    "kbm": "M"
+   },
+   "tab-next": {
+    "xbox": "RB",
+    "ps": "R1",
+    "switch": "R",
+    "kbm": "E"
+   }
+  },
+  "hold_to_confirm": []
+ },
+ "hud_screens": [
+  "hud"
+ ],
+ "screens": {
+  "hud": {
+   "hud": {
+    "component": "",
+    "tags": []
+   },
+   "hud.bottom-left.health-bar": {
+    "component": "@bar",
+    "tags": [
+     "#p1",
+     "#readout"
+    ],
+    "visibility": "peek",
+    "trigger": "on damage; fade 4s after full"
+   },
+   "hud.bottom-right.ammo": {
+    "component": "",
+    "tags": [
+     "#p1",
+     "#readout",
+     "#loc"
+    ],
+    "visibility": "persistent"
+   },
+   "hud.center.interact-prompt": {
+    "component": "@prompt",
+    "action": "interact",
+    "tags": [
+     "#p2",
+     "#prompt"
+    ],
+    "visibility": "peek",
+    "trigger": "near interactable"
+   }
+  }
+ },
+ "navigation": {
+  "start": "hud",
+  "screens": {
+   "hud": {},
+   "pause": {
+    "focus_order": [
+     "pause.menu.item[0]",
+     "pause.menu.item[1]",
+     "pause.menu.item[2]",
+     "pause.menu.item[3]",
+     "pause.menu.item[4]"
+    ],
+    "default_focus": "pause.menu.item[0]",
+    "layout": "list",
+    "wrap": true
+   },
+   "inventory": {
+    "focus_order": [
+     "inventory.grid.slot[0]",
+     "inventory.grid.slot[1]",
+     "inventory.grid.slot[2]",
+     "inventory.grid.slot[3]",
+     "inventory.grid.slot[4]",
+     "inventory.grid.slot[5]",
+     "inventory.grid.slot[6]",
+     "inventory.grid.slot[7]",
+     "inventory.grid.slot[8]",
+     "inventory.grid.slot[9]",
+     "inventory.grid.slot[10]",
+     "inventory.grid.slot[11]",
+     "inventory.grid.slot[12]",
+     "inventory.grid.slot[13]",
+     "inventory.grid.slot[14]",
+     "inventory.grid.slot[15]",
+     "inventory.grid.slot[16]",
+     "inventory.grid.slot[17]",
+     "inventory.grid.slot[18]",
+     "inventory.grid.slot[19]",
+     "inventory.grid.slot[20]",
+     "inventory.grid.slot[21]",
+     "inventory.grid.slot[22]",
+     "inventory.grid.slot[23]"
+    ],
+    "default_focus": "inventory.grid.slot[0]",
+    "layout": "grid",
+    "cols": 6,
+    "wrap": false
+   },
+   "map": {},
+   "options": {
+    "focus_order": [
+     "options.list.item[0]",
+     "options.list.item[1]",
+     "options.list.item[2]",
+     "options.list.item[3]"
+    ],
+    "layout": "list"
+   },
+   "audio": {
+    "focus_order": [
+     "audio.list.master-volume",
+     "audio.list.music",
+     "audio.list.sfx"
+    ],
+    "layout": "list"
+   },
+   "credits": {}
+  },
+  "links": [
+   {
+    "from": "hud",
+    "to": "pause",
+    "input": "pause"
+   },
+   {
+    "from": "hud",
+    "to": "map",
+    "input": "map"
+   },
+   {
+    "from": "pause",
+    "via": "pause.menu.item[1]",
+    "to": "inventory"
+   },
+   {
+    "from": "pause",
+    "via": "pause.menu.item[2]",
+    "to": "map"
+   },
+   {
+    "from": "pause",
+    "via": "pause.menu.item[3]",
+    "to": "options"
+   },
+   {
+    "from": "inventory",
+    "to": "map",
+    "input": "tab-next"
+   },
+   {
+    "from": "options",
+    "via": "options.list.item[1]",
+    "to": "audio"
+   }
+  ],
+  "tasks": {
+   "open-map": {
+    "frequency": "high",
+    "target": "map"
+   },
+   "equip-weapon": {
+    "frequency": "high",
+    "target": "inventory.grid.slot[13]"
+   },
+   "change-volume": {
+    "frequency": "low",
+    "target": "audio.list.master-volume",
+    "max_presses": 6
+   },
+   "check-quests": {
+    "frequency": "medium",
+    "target": "quests"
+   },
+   "view-credits": {
+    "frequency": "low",
+    "target": "credits"
+   }
+  },
+  "budgets": {
+   "medium": {
+    "presses": 5
+   }
+  }
+ }
+}

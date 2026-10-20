@@ -1,0 +1,41 @@
+name: Release
+
+# Push a tag like v0.3.1 to build the claude.ai ZIP and attach it to a GitHub Release.
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Tag must match plugin.json version
+        run: |
+          version=$(python3 -c "import json;print(json.load(open('plugins/game-gui/.claude-plugin/plugin.json'))['version'])")
+          if [ "v$version" != "$GITHUB_REF_NAME" ]; then
+            echo "Tag $GITHUB_REF_NAME does not match plugin.json version $version"; exit 1
+          fi
+
+      - name: Validator tests
+        run: bash tests/validator/run.sh
+
+      - name: Build ZIP
+        id: zip
+        run: echo "path=$(bash tools/build_zip.sh)" >> "$GITHUB_OUTPUT"
+
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          notes=$(python3 tools/changelog_section.py "${GITHUB_REF_NAME#v}")
+          gh release create "$GITHUB_REF_NAME" "${{ steps.zip.outputs.path }}" \
+            --title "$GITHUB_REF_NAME" --notes "$notes" \
+            $([[ "$GITHUB_REF_NAME" == v0.* ]] && echo --prerelease)

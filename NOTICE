@@ -1,0 +1,9 @@
+game-gui-design
+
+Parts of plugins/game-gui/skills/game-gui-design/references/patterns.md are adapted
+from the "game-ui-design" skill by omer-metin, licensed under the Apache License 2.0:
+https://github.com/omer-metin/skills-for-antigravity
+
+Changes: the text is rewritten, reorganized into pattern cards, and the numbers are
+checked against the published sources named in the file (Xbox Accessibility
+Guidelines 101 and 102, Apple Human Interface Guidelines, Material Design).

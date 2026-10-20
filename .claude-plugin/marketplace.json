@@ -1,0 +1,14 @@
+{
+  "name": "game-gui-tools",
+  "description": "Skills for game UI design",
+  "owner": {
+    "name": "RoyalNoob"
+  },
+  "plugins": [
+    {
+      "name": "game-gui",
+      "source": "./plugins/game-gui",
+      "description": "Game UI design process: brief, references, information architecture, design system, mockups with an inspector, validation, navigation cost, and handoff spec."
+    }
+  ]
+}

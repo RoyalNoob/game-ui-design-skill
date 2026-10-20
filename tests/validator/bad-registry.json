@@ -1,0 +1,104 @@
+{
+ "brief": {
+  "platforms": [
+   "console",
+   "pc"
+  ],
+  "reference_height": 1080
+ },
+ "tokens": {
+  "$color.surface": "#1b1712",
+  "$color.accent.primary": "#d98e2b",
+  "$color.text.high": "#f2ead9",
+  "$type.size.body": "16px",
+  "$type.size.hud-number": "44px",
+  "$type.size.caption": "22px",
+  "$motion.duration.normal": "180ms",
+  "$motion.ease.out": "cubic-bezier(0.2, 0, 0, 1)",
+  "$motion.duration.slow": "900ms"
+ },
+ "components": {
+  "@bar": {
+   "parts": [
+    "track",
+    "fill"
+   ],
+   "variants": [
+    "low"
+   ],
+   "states": [
+    "normal"
+   ]
+  },
+  "@prompt": {
+   "parts": [
+    "glyph",
+    "label"
+   ],
+   "variants": [
+    "xbox",
+    "ps",
+    "switch",
+    "kbm"
+   ],
+   "states": [
+    "normal"
+   ]
+  }
+ },
+ "input_map": {
+  "actions": {
+   "confirm": {
+    "xbox": "A",
+    "ps": "Cross",
+    "switch": "A",
+    "kbm": "Enter"
+   },
+   "interact": {
+    "xbox": "X",
+    "ps": "Square",
+    "switch": "Y",
+    "kbm": "E"
+   }
+  },
+  "hold_to_confirm": []
+ },
+ "hud_screens": [
+  "hud"
+ ],
+ "screens": {
+  "hud": {
+   "hud": {
+    "component": "",
+    "tags": []
+   },
+   "hud.bottom-left.health-bar": {
+    "component": "@bar",
+    "tags": [
+     "#p1",
+     "#readout"
+    ],
+    "trigger": "on damage; fade 4s after full"
+   },
+   "hud.bottom-right.ammo": {
+    "component": "",
+    "tags": [
+     "#p1",
+     "#readout",
+     "#loc"
+    ],
+    "visibility": "peek"
+   },
+   "hud.center.interact-prompt": {
+    "component": "@prompt",
+    "action": "jump",
+    "tags": [
+     "#p2",
+     "#prompt"
+    ],
+    "visibility": "peek",
+    "trigger": "near interactable"
+   }
+  }
+ }
+}

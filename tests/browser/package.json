@@ -1,0 +1,6 @@
+{
+  "name": "game-gui-design-browser-tests",
+  "private": true,
+  "scripts": { "test": "node inspector.test.js" },
+  "devDependencies": { "playwright": "1.64.1" }
+}

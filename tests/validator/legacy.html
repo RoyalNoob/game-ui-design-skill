@@ -1,0 +1,13 @@
+<!doctype html>
+<html><head><style>
+:root { --color-surface:#1b1712; --color-accent-primary:#d98e2b; --color-text-high:#f2ead9; --type-size-body:30px; }
+.bar { background: var(--color-surface); }
+.bar .fill { background: var(--color-accent-primary); border-color: #ff0000; }
+.ammo { font-size: var(--type-size-big); }
+</style></head>
+<body data-id="hud" data-tags="">
+  <div data-id="hud.bottom-left.health-bar" data-component="@bar" data-tags="#p1 #readout" class="bar"><div class="fill"></div></div>
+  <div data-id="hud.bottom-left.ammo" data-component="" data-tags="#p1 #shiny" class="ammo">30</div>
+  <div data-id="hud.top-right.old-minimap" data-tags=""></div>
+  <div data-id="hud.center.crosshair" data-tags="#decor"></div>
+</body></html>

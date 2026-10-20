@@ -1,0 +1,26 @@
+<!doctype html><html><head><style>
+:root{--c:#d98e2b}
+html,body{margin:0;height:100%;background:#000;overflow:hidden}
+#stage{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0;background:#222}
+.hud{position:absolute;inset:0;pointer-events:none}
+.bar{position:absolute;left:60px;bottom:60px;width:400px;height:24px;background:#555}
+.fill{width:70%;height:100%;background:var(--c)}
+.ammo{position:absolute;right:60px;bottom:60px;font:48px sans-serif;color:#fff}
+.vignette{position:absolute;inset:0;background:radial-gradient(transparent 60%,#000a)}
+.menu{position:absolute;left:800px;top:300px;opacity:0}
+.menu div{width:300px;height:60px;background:#444;margin:8px}
+</style></head><body>
+<div id="stage" data-id="hud">
+ <div class="menu" data-id="hud.hidden-menu"><div data-id="hud.hidden-menu.item[0]"></div></div>
+ <div class="hud" data-id="hud.layer">
+  <div class="bar" data-id="hud.layer.health-bar" data-component="@bar" data-tags="#p1 #readout"><div class="fill" data-id="hud.layer.health-bar.fill"></div></div>
+  <div class="ammo" data-id="hud.layer.ammo" data-tags="#p1 #readout">30 / 120</div>
+ </div>
+ <div class="vignette"></div>
+</div>
+<script>
+function fit(){const s=Math.min(innerWidth/1920,innerHeight/1080);stage.style.transform=`scale(${s})`}
+addEventListener('resize',fit);fit();
+</script>
+<script src="INSPECTOR"></script>
+</body></html>

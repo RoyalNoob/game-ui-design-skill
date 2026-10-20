@@ -11,7 +11,10 @@
    background (bright, mid-gray, dark, busy) to check HUD text over gameplay.
    Motion: speed (1x-0.1x), reduced-motion toggle, replay via window.uiiReplay(ids). */
 (() => {
+  // Reset first: page rules for .row, button, input etc. must not leak into the panel.
+  // ponytail: page !important rules still leak; move the panel into a shadow root if that bites.
   const css = `
+  #uii-btn,#uii-tip,#uii-panel,#uii-panel *{all:revert;box-sizing:border-box}
   #uii-btn{position:fixed;right:12px;bottom:12px;z-index:2147483647;font:12px/1 monospace;padding:8px 10px;background:#111;color:#fff;border:1px solid #888;cursor:pointer}
   #uii-tip{position:fixed;z-index:2147483646;pointer-events:none;font:11px/1.3 monospace;background:#000c;color:#ffd75e;padding:2px 5px;white-space:nowrap}
   .uii-hover{outline:2px dashed #ffd75e!important;outline-offset:-2px}

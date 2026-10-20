@@ -118,6 +118,24 @@ test('inspect mode blocks clicks on the mockup', async b => {
   await p.close();
 });
 
+test('page CSS for .row, .flex, button etc. does not break the panel', async b => {
+  const p = await b.newPage({ viewport: { width: 960, height: 540 } });
+  await p.setContent(page('hostile-css.html'));
+  await p.click('#uii-btn');
+  await p.click('text=Click me');
+  await p.fill('#uii-note', 'x');
+  await p.click('[data-a=add]');
+  const r = await p.$eval('#uii-panel', el => ({
+    over: el.scrollWidth - el.clientWidth,
+    rows: [...el.children].map(c => getComputedStyle(c).display),
+    copy: el.querySelector('[data-a=copy]').getBoundingClientRect().right <= el.getBoundingClientRect().right
+  }));
+  assert.strictEqual(r.over, 0, 'panel scrolls horizontally');
+  assert.ok(r.rows.every(d => d === 'block' || d === 'flex'), r.rows.join());
+  assert.ok(r.copy, 'Copy edits is clipped');
+  await p.close();
+});
+
 (async () => {
   const b = await chromium.launch(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {});
   let failed = 0;
